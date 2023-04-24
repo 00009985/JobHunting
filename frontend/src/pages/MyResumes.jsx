@@ -41,7 +41,7 @@ const MyResumes = () => {
         <table>
           <tr>
             <th>Name</th>
-            <th>Date created</th>
+            <th>Work Experience</th>
             <th>Action</th>
           </tr>
           {data.map((resume) => (
@@ -49,7 +49,6 @@ const MyResumes = () => {
             <td>
               {resume.resumeName}
             </td>
-            <td>{resume.education}</td>
             <td>{resume.workExperience}</td>
             <td className='job_buttons'>
               <button className='btn_deletejob' onClick={() => handleDelete(resume._id)}>Delete</button>

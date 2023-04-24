@@ -91,11 +91,11 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <Link to="/login" className="link">
-                Sign in
+              <Link to="/login" >
+                <button className="link">Sign in</button> 
               </Link>
-              <Link className="link" to="/register">
-                <button>Join</button>
+              <Link  to="/register">
+                <button className="link">Join</button>
               </Link>
             </>
           )}

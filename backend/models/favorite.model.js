@@ -2,9 +2,8 @@ import mongoose from "mongoose";
 const {Schema} = mongoose;
 
 const FavoriteSchema = new Schema({
-    userFrom: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+    ApplicantId: {
+        type: String,
     },
     jobId: {
         type:String,

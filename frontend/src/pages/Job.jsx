@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import newRequest from '../../utils/newRequest';
 import Reviews from '../components/Reviews';
-import Favorite from '../components/Favorite';
 
 function Job(props) {
   
@@ -24,6 +23,13 @@ function Job(props) {
       return res.data
     })
   }
+
+  const handleFavorites = () =>{
+    newRequest.post(`/favorite/${id}`).then((res) => {
+      return res.data
+    })
+  }
+
   return (
     <div className="job">
       {isLoading ? (
@@ -38,7 +44,7 @@ function Job(props) {
               <span>{data.Salary}</span>
               <span>{data.experience}</span>
               <button className="btn_apply" onClick={handleApply} disabled={currentUser.isRecruiter}>Apply</button>
-              <Favorite userFrom={localStorage.getItem(currentUser._id)} jobId={id} jobInfo={data}/>
+              <button className="btn_apply" onClick={handleFavorites} disabled={currentUser.isRecruiter}>Add to favorites</button>
             </div>
             <div className="job_description">
               <h2>Description</h2>

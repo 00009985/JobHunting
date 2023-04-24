@@ -33,7 +33,7 @@ const ResumeSchema = new Schema({
     letter: {
         type: String,
         required: false,
-    },
+    }
 },
 {
     timestamps: true,

@@ -42,7 +42,9 @@ function Register () {
   return (
     <div className='register'>
       <form className='register_form' onSubmit={handleSubmit}>
-        <h1>Create a new account</h1>
+      <h1>Create a new account</h1>
+        <div className='register_container'>
+        <div className='register_applicant'>
         <label htmlFor="">Username</label>
         <input type="text" name='username' onChange={handleChange}/>
         <label htmlFor="">Email</label>
@@ -50,7 +52,8 @@ function Register () {
         <label htmlFor="">Password</label>
         <input type="password" name='password' onChange={handleChange} />
         <button type='Submit'>Register</button>
-
+        </div>
+        <div className='register_company'>
         <h1>I want to become a seller</h1>
           <div className="toggle">
             <label htmlFor="">Activate the seller account</label>
@@ -75,6 +78,8 @@ function Register () {
             rows="10"
             onChange={handleChange}
           ></textarea>
+          </div>
+          </div>
       </form>
     </div>
   )

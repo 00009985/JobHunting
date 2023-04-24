@@ -300,7 +300,73 @@ textarea {
   flex-direction: column;
 }
 
-.register_form input{
+.register{
+  width: 1200px;
+  align-items: center;
+  margin: auto;
+}
+
+
+
+.register_container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.register_applicant{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register_company{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.login{
+  width: 1200px;
+  margin: auto;
+}
+
+.login input{
+  width: 150px;
+}
+
+.login button {
+  width: 80px;
+}
+.login_form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addResume{
+  width: 1200px;
+  margin: auto;
+}
+
+.addResume_container{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addResume_container input {
   border: black solid 1px;
-  width: 500px;
+  width: 250px;
+}
+
+.addResume_container button{
+  width: 250px;
+
+}
+
+.myResumes{
+  width: 1200px;
+  margin: auto;
 }

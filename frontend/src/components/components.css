@@ -29,6 +29,14 @@
     
 }
 
+.link{
+    margin-left: 20px;
+    border-radius: 25px;
+    padding: 2px 10px;
+    background-color: #fff;
+
+}
+
 .user{
     position: relative;
     display: flex;

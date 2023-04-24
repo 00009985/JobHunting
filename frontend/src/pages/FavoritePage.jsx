@@ -1,35 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import "./pages.css";
 import axios  from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import newRequest from '../../utils/newRequest';
 
 function FavoritePage() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-  const [FavoriteJobs, setFavoriteJobs] = useState([])
-  const variables = { userFrom: localStorage.getItem(currentUser._id)}
-  useEffect(() => {
-    axios.post('/api/favorite/getFavoriteJobs', variables)
-    .then(response => {
-        if (response.data.success){
-            setFavoriteJobs(response.data.favorites)
-        }else{
-            alert("Failed to get favorite jobs")
-        }
-    })
-  }, [])
 
-  const renderTableBody = FavoriteJobs.map((job, index) => {
-    return <tr>
-        <td>{job.jobName}</td>
-        <td>{job.Salary}</td>
-        <td><button>Remove</button></td>
-        
-    </tr>
-  })
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const queryClient = useQueryClient();
+  
+    const navigate = useNavigate()
+  
+    const { isLoading, error, data} = useQuery({
+      queryKey: ['favorite'],
+      queryFn: () =>
+        newRequest.get(`/favorite`).then((res) => {
+          return res.data;
+        })
+    })
+
+    const mutation = useMutation({
+        mutationFn: (id) => {
+          return newRequest.delete(`/favorite/${id}`)
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries(["favorite"])
+        }
+      })
+      const handleDelete = (id) => {
+        mutation.mutate(id)
+      }
+
+
   return (
     <div className='FavoritePage'>
         <h1>Favorite List</h1>
-
-        <table>
+        <div className='favorite_table'>
+        {isLoading ?  ("loading") :
+        error ? ("Something went wrong") :
+        (<table>
             <thead>
                 <tr>
                     <th>Job Name</th>
@@ -37,10 +47,18 @@ function FavoritePage() {
                     <th>Remove</th>
                 </tr>
             </thead>
-            <tbody>
-                {renderTableBody}
-            </tbody>
-        </table>
+            { data.map((favorite) => ( 
+           <tr key={favorite._id}>
+              <td>
+                {favorite.jobName}
+              </td>
+              <td>{favorite.jobSalary}</td>
+              <td className='job_buttons'>
+                <button className='btn_deletejob' onClick={()  => handleDelete(favorite._id)}>Remove</button>
+              </td>
+            </tr>))}
+        </table>)}
+        </div>
     </div>
   )
 }

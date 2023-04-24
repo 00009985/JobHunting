@@ -30,7 +30,7 @@ const Applications = () => {
     } catch (error) {
       if(error.response.status===404){
         const res = await newRequest.post(`/conversations/`, 
-        {to: currentUser.isRecruiter ? ApplicantId : CompanyId,})
+        {to: currentUser.isRecruiter ? ApplicantId : CompanyId})
         
         navigate(`/messages/${res.data.id}`)
       }

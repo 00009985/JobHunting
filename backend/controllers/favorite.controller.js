@@ -1,61 +1,45 @@
 import Favorite from "../models/favorite.model.js"
+import Job from '../models/job.model.js'
 
-export const findFavoriteNumber = async (req, res, next) => {
-    Favorite.find({"jobId": req.body.jobId})
-    .exec(( err, favorite) => {
-        if(err) return res.status(400).send(err)
-        res.status(200).json({ success: true, FavoriteNumber: favorite.length})
-    })
-};
 
 export const findFavorited = async (req, res, next) => {
-    Favorite.find({"jobId": req.body.jobId,  "userFrom": req.body.userFrom
-    .exec(( err, favorite) => {
-        if(err) return res.status(400).send(err)
-        
-        let result = false
-        if(favorite.length !==0){
-            result = true
-        }
-        res.status(200).json({ success: true, favorited: result})
-
-    })
-})
+    try {
+        const job = await Job.findById(req.params.jobId)
+        const newFavorite = new Favorite({
+            jobId: job._id,
+            jobName: job.jobName,
+            jobSalary: job.Salary,
+            ApplicantId: req.userId,
+        })
+        await newFavorite.save();
+        res.status(200).send("successful");
+    } catch (error) {
+        next(error)
+    }    
     
 };
 
-export const addToFavorite = async (req, res, next) => {
-    //save to db
-   const favorite = new Favorite(req.body)
-   try {
-    const savedJob = await favorite.save();
-    res.status(201).json(savedJob);
-} catch (err) {
-    next(err)
-}
-}
-    
-export const removeFromFavorite = async (req, res, next) => {
-    //save to db
-    Favorite.findOneAndDelete({ jobId: req.body.jobId, userFrom: req.body.userFrom})
-    .exec((err, doc) => {
-        if(err){
-            return res.status(400).json({success: false, err})
-        }else {
-            res.status(200).json({ success: true, doc})
-        }
-    })
+
+export const getFavorited = async (req, res, next) => {
+    try {
+        const favorites = await Favorite.find(req.params.id)
+
+        res.status(200).send(favorites)
+        
+    } catch (error) {
+        next(error)
+    }    
 }
 
-export const getFavoriteJobs = async (req, res, next) => {
-    //save to db
-    Favorite.find({ 'userFrom' : req.body.userFrom})
-    .exec((err, favorites) => {
-        if(err){
-            return res.status(400).send(err)
-        }else {
-            res.status(200).json({ success: true, favorites})
-        }
-    })
-}
-    
+export const deleteFavorited = async (req, res, next) => {
+    try {
+        const favorite = await Favorite.findById(req.params.id);
+        if (favorite.ApplicantId != req.userId) 
+            return next(createError(403, "You can delete only your favorite"));
+        await Favorite.findByIdAndDelete(req.params.id)
+            res.status(200).send("Favorite has been deleted")
+        } catch (error) {
+        next(error)
+    }
+};
+

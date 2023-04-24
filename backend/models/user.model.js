@@ -7,10 +7,6 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
     },
-    userImage: {
-        type: String,
-        required:true,
-    },
     email: {
         type: String,
         required: true,
@@ -22,7 +18,12 @@ const UserSchema = new Schema({
     },
     phone: {
         type: String,
-        required: false,
+        validate: {
+            validator: function (v) {
+              return v !== "" ? /\+\d{12}/.test(v) : true;
+            },
+            msg: "Phone number is invalid!",
+          },
     },
     desc:{
         type: String,
