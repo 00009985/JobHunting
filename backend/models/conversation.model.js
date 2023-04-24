@@ -7,7 +7,7 @@ const ConversationSchema = new Schema({
         required: true,
         unique: true,
     },
-    companyId: {
+    CompanyId: {
         type: String,
         required: true,
     },

@@ -3,7 +3,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import AddJob from "./pages/AddJob";
+import EditJob from "./pages/EditJob";
 import Applications from "./pages/Applications";
+import ApplicationCompany from "./pages/ApplicationCompany";
 import Jobs from "./pages/Jobs";
 import Job from "./pages/Job";
 import MyJobs from "./pages/MyJobs";
@@ -16,6 +18,7 @@ import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 import FavoritePage from "./pages/FavoritePage";
 import AddResume from "./pages/AddResume";
+
 import "./App.css"
 
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
@@ -84,7 +87,15 @@ function App() {
           element:<AddJob/>
         },
         {
+          path:"/editjob",
+          element:<EditJob/>
+        },
+        {
           path:"/applications",
+          element:<Applications/>
+        },
+        {
+          path:"/applicationcompany",
           element:<Applications/>
         },
         {

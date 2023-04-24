@@ -4,7 +4,7 @@ import Conversation from "../models/conversation.model.js"
 export const createConversation = async (req, res, next) => {
     const newConversation = new Conversation({
         id: req.isRecruiter ? req.userId + req.body.to : req.body.to + req.userId,
-        companyId: req.isRecruiter? req.userId : req.body.to,
+        CompanyId: req.isRecruiter? req.userId : req.body.to,
         ApplicantId: req.isRecruiter? req.body.to : req.userId,
         readByCompany: req.isRecruiter,
         readByApplicant: !req.isRecruiter,

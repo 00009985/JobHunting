@@ -44,7 +44,7 @@ const Navbar = () => {
                       <Link className="menu_link" to="/addjob">
                         Add new job
                       </Link>
-                      <Link className="menu_link" to="/applications">
+                      <Link className="menu_link" to="/applicationcompany">
                         Applications
                       </Link>
                       <Link className="menu_link" to="/messages">

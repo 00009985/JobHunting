@@ -11,7 +11,7 @@ const MyJobs = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['myJobs'],
     queryFn: () =>
-      newRequest.get(`/jobs?userId=${currentUser.id}`).then((res) => {
+      newRequest.get(`/jobs/myJobs`).then((res) => {
         return res.data;
       })
   })
@@ -54,7 +54,7 @@ const MyJobs = () => {
             <td>{job.applyNumber}</td>
             <td className='job_buttons'>
               <button className='btn_deletejob' onClick={() => handleDelete(job._id)}>Delete</button>
-              <button className='btn_editjob'>Edit</button>
+              <Link to={`/editjob`}><button className='btn_editjob' >Edit</button></Link>
             </td>
           </tr>))}
         </table>

@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 
 function Jobs () {
 
-  const [sort, setSort] = useState("sales");
+  const [sort, setSort] = useState("date");
   const [open, setOpen] = useState(false)
   const minRef = useRef();
   const maxRef = useRef();
@@ -50,14 +50,14 @@ function Jobs () {
           </div>
           <div className="jobs_filteringright">
             <span className='sortby'>Sort By</span>
-            <span className='sortOptions'>{sort === "sales" ? "Best Selling" : "Newest"}</span>
+            <span className='sortOptions'>{sort == "date" ? "Newest" : "By Abc"}</span>
             <img className='img_down' src="./images/down.png" alt="" onClick={() => setOpen(!open)} />
             {open && 
             (<div className="jobs_rightmenu">
-              {sort === "sales" ? 
-              (<span onClick={() =>reSort("createdAt")}>Newest</span>)
+              {sort == "date" ? 
+              (<span onClick={() =>reSort("createdAt")}>by abc</span>)
               : 
-              (<span onClick={() =>reSort("sales")}>Best Selling</span>)}
+              (<span onClick={() =>reSort("sales")}>Newest</span>)}
             </div>)}
           </div>
         </div>

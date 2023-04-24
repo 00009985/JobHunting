@@ -11,8 +11,8 @@ export const createApplication = async (req, res, next) => {
             Salary: job.Salary,
             CompanyId: job.companyId,
             ApplicantId: req.userId,
+            isApplyed: true,
         })
-
         await newApplication.save();
         res.status(200).send("successful");
     } catch (error) {
@@ -34,50 +34,16 @@ export const getApplications = async (req, res, next) => {
     }    
 }
 
-export const applyForJob = async (req, res, next) => {
-    const user = req.user;
-    const data  = req.body;
-    const jobId = req.params.jobId
-    if (req.isRecruiter){
-        res.status(401).json({
-            message: "You don't have permissions to apply for a job",
-          });
-          return;
+export const deleteApplication = async (req, res, next) => {
+    try {
+        const application = await Application.findById(req.params.id);
+        if (application.ApplicantId != req.userId) 
+            return next(createError(403, "You can delete only your application"));
+        await Application.findByIdAndDelete(req.params.id)
+            res.status(200).send("Application has been deleted")
+        } catch (error) {
+        next(error)
     }
-    
-    Application.findOne({
-        ApplicantId: user._id,
-        jobId: jobId,
-        status: {
-            $nin: ["deleted", "accepted", "cancelled"]
-        },
-    }).then((appliedApplication) => {
-        console.log(appliedApplication);
-        if(appliedApplication !== null){
-            res.status(400).json({
-                message: "You have applied"
-            })
-            return
-        }
+};
 
-        Job.findOne({ _id: jobId})
-            .then((job) => {
-                if(job === null){
-                    res.status(400).json({
-                        message: "Job does not exist"
-                    })
-                    return
-                }
-                Application.countDocuments({
-                    jobId: jobId,
-                    status: {
-                        $nin: ["rejected", "deleted", "cancelled", "finished"],
-                    },
-                }).then((activeApplicationCount) => {
-                    if(activeApplicationCount < job){
-                        
-                    }
-                })
-            })
-    })
-}
+//

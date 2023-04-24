@@ -6,9 +6,10 @@ import newRequest from '../../utils/newRequest';
 import Reviews from '../components/Reviews';
 import Favorite from '../components/Favorite';
 
-function Job() {
+function Job(props) {
+  
   const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-  const jobId = useParams();
+
   const { id } = useParams();
   const { isLoading, error, data } = useQuery({
     queryKey: ['job'],
@@ -18,6 +19,11 @@ function Job() {
       }),
   });
 
+  const handleApply = () =>{
+    newRequest.post(`/applications/${id}`).then((res) => {
+      return res.data
+    })
+  }
   return (
     <div className="job">
       {isLoading ? (
@@ -31,8 +37,8 @@ function Job() {
               <h1 className="jobname">{data.jobName}</h1>
               <span>{data.Salary}</span>
               <span>{data.experience}</span>
-              <button className="btn_apply">Apply</button>
-              <Favorite userFrom={currentUser._id} jobId={jobId} jobInfo={data}/>
+              <button className="btn_apply" onClick={handleApply} disabled={currentUser.isRecruiter}>Apply</button>
+              <Favorite userFrom={localStorage.getItem(currentUser._id)} jobId={id} jobInfo={data}/>
             </div>
             <div className="job_description">
               <h2>Description</h2>

@@ -6,13 +6,13 @@ Applicant can:
 5. []Edit the resume 
 6. [x]Delete the resume 
 7. [x]Search the vacancies 
-8. []View vacancies by category (full-time, part-time and etc.)
+8. [x]View vacancies by category (full-time, part-time and etc.)
 9. [x]Sort vacancies by salary and date posted
 10. [x]View vacancy details 
-11. []Apply for the vacancy 
-12. []Write a message to the company after applying
-13. []View all applies user made 
-14. []Leave a review about company after applying 
+11. [x]Apply for the vacancy 
+12. [x]Write a message to the company after applying
+13. [x]View all applies user made 
+14. [x]Leave a review about company after applying 
 15. [х]Contact the JobHunting if there are questions 
 16. [x]Log out from the system 
 17. []Delete account

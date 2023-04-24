@@ -34,11 +34,14 @@ const JobSchema = new Schema({
         type: String,
         required: false,
     },
-
     skills:{
         type: [],
         required: false,
     },
+    applications: {
+        type: Schema.Types.ObjectId,
+        ref: "Application"
+    }
 },
 {
     timestamps: true,

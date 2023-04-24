@@ -25,7 +25,7 @@ const JobCard = ({item}) => {
       </div>)}
         <div className="job_left">
             <span>{item.jobName}</span>
-            <span className='jobcompanyname'>{item.companyName}</span>
+            <span className='jobcompanyname'>{item.companyId}</span>
         </div>
         <div className="job_right">
             <img className='img_heart' src="./images/heart.png" alt="" />
