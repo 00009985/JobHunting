@@ -14,6 +14,8 @@ import Messages from "./pages/Messages";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Contact from "./pages/Contact";
+import FavoritePage from "./pages/FavoritePage";
+import AddResume from "./pages/AddResume";
 import "./App.css"
 
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
@@ -22,6 +24,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query'
+import MyResumes from "./pages/myResumes";
 
 function App() {
   const queryClient = new QueryClient()
@@ -85,6 +88,10 @@ function App() {
           element:<Applications/>
         },
         {
+          path:"/addresume",
+          element:<AddResume/>
+        },
+        {
           path:"/resumes/:id",
           element:<Resume/>
         },
@@ -93,8 +100,16 @@ function App() {
           element:<Resumes/>
         },
         {
+          path:"/myresumes",
+          element:<MyResumes/>
+        },
+        {
           path:"/contact",
           element:<Contact/>
+        },
+        {
+          path: "/favorite",
+          element: <FavoritePage/>
         }
       ]
     },

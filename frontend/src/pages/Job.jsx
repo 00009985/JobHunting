@@ -4,8 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import newRequest from '../../utils/newRequest';
 import Reviews from '../components/Reviews';
+import Favorite from '../components/Favorite';
 
 function Job() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  const jobId = useParams();
   const { id } = useParams();
   const { isLoading, error, data } = useQuery({
     queryKey: ['job'],
@@ -29,6 +32,7 @@ function Job() {
               <span>{data.Salary}</span>
               <span>{data.experience}</span>
               <button className="btn_apply">Apply</button>
+              <Favorite userFrom={currentUser._id} jobId={jobId} jobInfo={data}/>
             </div>
             <div className="job_description">
               <h2>Description</h2>

@@ -62,10 +62,10 @@ const Navbar = () => {
 
                   {!currentUser?.isRecruiter && (
                     <>
-                      <Link className="menu_link" to="/applications">
+                      <Link className="menu_link" to="/myresumes">
                         My resumes
                       </Link>
-                      <Link className="menu_link" to="/addjob">
+                      <Link className="menu_link" to="/addresume">
                         Add new resume
                       </Link>
                       <Link className="menu_link" to="/applications">
@@ -73,6 +73,9 @@ const Navbar = () => {
                       </Link>
                       <Link className="menu_link" to="/messages">
                         Messages
+                      </Link>
+                      <Link className="menu_link" to="/favorite">
+                        Favorite List
                       </Link>
                       <Link
                         className="menu_link"

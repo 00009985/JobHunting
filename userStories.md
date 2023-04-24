@@ -13,9 +13,10 @@ Applicant can:
 12. []Write a message to the company after applying
 13. []View all applies user made 
 14. []Leave a review about company after applying 
-15. []Contact the JobHunting if there are questions 
+15. [х]Contact the JobHunting if there are questions 
 16. [x]Log out from the system 
 17. []Delete account
+18. []Add vacancy to favorites 
 
 
 Recruiter can: 
@@ -27,7 +28,7 @@ Recruiter can:
 6. [x]View all the applies for the vacancy 
 7. [x]Write message to the applicant
 8. [x]Mark message as read 
-9. []Contact the JobHunting if there are questions 
+9. [х]Contact the JobHunting if there are questions 
 10. []View the resume of the applicant applied
 11. []Accept/reject the application
 12. [x]Log out from the system

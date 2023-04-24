@@ -10,7 +10,7 @@ export const createResume = async (req, res, next) => {
         ...req.body,
     });
 
-    try {
+    try { 
         const savedResume = await newResume.save();
         res.status(201).json(savedResume);
     } catch (err) {

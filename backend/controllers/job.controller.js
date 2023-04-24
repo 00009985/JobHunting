@@ -1,4 +1,3 @@
-import jobModel from "../models/job.model.js";
 import Job from "../models/job.model.js"
 import createError from "../utils/error.js";
 
@@ -58,3 +57,42 @@ export const getJobs = async (req, res, next) => {
         next(error)
     }
 };
+
+export const addToFavourites = async (req, res, next) => {
+   
+    const { _id } = req.user
+    const {jobId} = req.body
+    
+    try{
+        const user = await User.findById(_id)
+        const alreadyadded = user.favourites.find((id) => id.toString() === jobId); 
+        if (alreadyadded) {
+            let user = await User.findByIdAndUpdate(
+                _id, 
+                {
+                    $pull: {favourites: jobId},
+                },
+                {
+
+                    new: true
+                }
+            )
+            res.json(user);
+        }else {
+            let user = await User.findByIdAndUpdate(
+                _id, 
+                {
+                    $push: {favourites: jobId},
+                },
+                {
+
+                    new: true
+                }
+            )
+            res.json(user)
+        }
+    }
+    catch (error){
+        throw new Error(error)
+    }
+}

@@ -31,7 +31,7 @@ const UserSchema = new Schema({
     isRecruiter: {
         type: Boolean,
         default: false,
-    }
+    },
 },
 {
     timestamps: true,

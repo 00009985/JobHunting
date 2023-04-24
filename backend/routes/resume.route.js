@@ -9,4 +9,4 @@ router.delete("/:id", verifyToken, deleteResume);
 router.get("/single/:id", getResume);
 router.get("/", getResumes);
 
-export default router;
+export default router; 

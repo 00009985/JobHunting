@@ -9,6 +9,7 @@ import resumeRoute from './routes/resume.route.js';
 import conversationRoute from './routes/conversation.route.js';
 import applicationRoute from './routes/application.route.js';
 import authRoute from './routes/auth.route.js';
+import favoriteRoute from './routes/favorite.route.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -49,6 +50,8 @@ app.use('/api/jobs', jobRoute);
 app.use('/api/resumes', resumeRoute);
 app.use('/api/conversations', conversationRoute);
 app.use('/api/applications', applicationRoute);
+app.use('/api/favorite', favoriteRoute);
+
 
 
 app.use((err, req, res, next) => {
@@ -62,3 +65,4 @@ app.listen(5000, () => {
   connect();
   console.log('Backend running');
 });
+
