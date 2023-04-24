@@ -6,8 +6,7 @@ import newRequest from '../../utils/newRequest';
 import Reviews from '../components/Reviews';
 
 function Job(props) {
-  
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   const { id } = useParams();
   const { isLoading, error, data } = useQuery({
@@ -18,17 +17,17 @@ function Job(props) {
       }),
   });
 
-  const handleApply = () =>{
+  const handleApply = () => {
     newRequest.post(`/applications/${id}`).then((res) => {
-      return res.data
-    })
-  }
+      return res.data;
+    });
+  };
 
-  const handleFavorites = () =>{
+  const handleFavorites = () => {
     newRequest.post(`/favorite/${id}`).then((res) => {
-      return res.data
-    })
-  }
+      return res.data;
+    });
+  };
 
   return (
     <div className="job">
@@ -43,30 +42,27 @@ function Job(props) {
               <h1 className="jobname">{data.jobName}</h1>
               <span>{data.Salary}</span>
               <span>{data.experience}</span>
-              <button className="btn_apply" onClick={handleApply} disabled={currentUser.isRecruiter}>Apply</button>
-              <button className="btn_apply" onClick={handleFavorites} disabled={currentUser.isRecruiter}>Add to favorites</button>
+              <button className="btn_apply" onClick={handleApply}>
+                Apply
+              </button>
+              <button
+                className="btn_apply"
+                onClick={handleFavorites}
+                disabled={currentUser.isRecruiter}
+              >
+                Add to favorites
+              </button>
             </div>
             <div className="job_description">
               <h2>Description</h2>
               <span>{data.description}</span>
               <h2>Working hours</h2>
-              <span>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Nesciunt, alias. Maiores ex tempore ullam vel id molestias
-                repellendus quis, rerum facilis quod. Quo molestias sed quisquam
-                vel, nesciunt cum enim?
-              </span>
               <h2>Skills</h2>
-              <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam
-                sed molestiae dolores dolorum? Fugit, maxime, quasi id fuga
-                numquam eos dolorum incidunt minus recusandae iusto voluptates
-                nesciunt. Eos, ullam. Quisquam.
-              </span>
+              <span>{data.skills}</span>
               <h2>Date posted</h2>
               <span>29.03.2023</span>
             </div>
-            <Reviews jobId={id}/>
+            <Reviews jobId={id} />
           </div>
           <div className="jobright">
             <img

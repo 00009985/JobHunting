@@ -47,9 +47,9 @@ const Messages = () => {
           </tr>
           </tbody>
             {data.map((conversation) => (
-            <tr key={conversation.id}> 
+            <tr key={conversation._id}> 
                 <td>
-                  {currentUser.isRecruiter ? conversation.ApplicantId : conversation.companyId}
+                  {currentUser.isRecruiter ? conversation.ApplicantId : conversation.CompanyId}
                 </td>
                 <td><Link to={`/message/${conversation.id}`}>{conversation?.lastMessage?.substring(0, 70)}...</Link></td>
                 <td>{moment(conversation.updatedAt).fromNow()}</td>

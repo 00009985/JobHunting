@@ -16,7 +16,7 @@ Applicant can:
 15. [х]Contact the JobHunting if there are questions 
 16. [x]Log out from the system 
 17. []Delete account
-18. []Add vacancy to favorites 
+18. [х]Add vacancy to favorites 
 
 
 Recruiter can: 
@@ -25,7 +25,7 @@ Recruiter can:
 3. [x]Create a new vacancy 
 4. []Edit the vacancy 
 5. [x]Delete the vacancy 
-6. [x]View all the applies for the vacancy 
+6. []View all the applies for the vacancy 
 7. [x]Write message to the applicant
 8. [x]Mark message as read 
 9. [х]Contact the JobHunting if there are questions 

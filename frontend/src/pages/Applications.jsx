@@ -75,7 +75,7 @@ const Applications = () => {
               <td>{application.CompanyId}</td>
               <td className='job_buttons'>
                 <button className='btn_deletejob' onClick={()  => handleDelete(application._id)}>Delete</button>
-                <button onClick={() => handleContact(application)}>{currentUser?.isRecruiter ? "Conatact" : ""}</button>
+                <button onClick={() => handleContact(application)}>Contact</button>
               </td>
             </tr>))}
           </table>

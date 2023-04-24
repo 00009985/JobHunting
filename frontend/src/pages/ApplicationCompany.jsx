@@ -3,7 +3,7 @@ import "./pages.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from '../../utils/newRequest';
-const Applications = () => {
+const ApplicationCompany = () => {
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const queryClient = useQueryClient();
@@ -67,7 +67,7 @@ const Applications = () => {
               <th>Contact</th>
             </tr>
            { data.map((application) => ( 
-           <tr key={application._id}>
+           <tr key={application.id}>
               <td>
                 {application.jobName}
               </td>
@@ -84,4 +84,4 @@ const Applications = () => {
   )
 }
 
-export default Applications
+export default ApplicationCompany
